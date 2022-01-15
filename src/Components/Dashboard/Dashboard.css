@@ -1,0 +1,76 @@
+.poster{
+    height: 55vh;
+    float: right;
+    border-radius: 10px;
+    box-shadow: 0px 30px 36px #557DA526;
+}
+.mainContent{
+    font-size: 60px;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    vertical-align: middle;
+
+    justify-content: space-between;
+    padding: 50px 100px;
+}
+.welcome-text{
+    color: #fff;
+    width: 350px;
+    padding: 50px 0px;
+    text-align: left;
+    letter-spacing: 0px;
+}
+.title-text{
+    font-weight: 600;
+}
+.highlighted{
+    color: #43afff;
+}
+.getStartedCta{
+    display: block;
+    height: 50px;
+    width: 150px;
+    background-color: #43afff;
+    color: white;
+    border: none;
+    margin: 30px 0px;
+    border-radius: 5px;
+}
+.testimonial{
+    width: 80%;
+    text-align: left;
+    margin: 30px auto;
+}
+.testimonial-cards{
+display: flex;
+justify-content: space-between;
+text-align: left;
+
+}
+.testimonial-title{
+  margin-bottom: 40px;
+  font-weight: 500;
+  font-size: 22px;
+}
+.card{
+    height: 200px;
+    width: 30%;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 3px 6px #557DA526;
+    overflow: hidden;
+}
+.card-title{
+    color: #43afff;
+    padding: 25px 25px 0px;
+    text-transform: capitalize;
+    font-size: 27px;
+    width: 50%;
+    font-weight: 600;
+}
+.card-desc{
+    color: #303F60;
+    font-weight: 400;
+    font-size: 15px;
+    padding: 30px 20px;
+}

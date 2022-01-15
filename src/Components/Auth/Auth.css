@@ -1,0 +1,48 @@
+.modal{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 30px 36px #557DA526;
+    padding: 30px;
+    border-radius: 20px;
+    font-family: 'Poppins', sans-serif;
+    
+}
+.txt{
+    margin: 100px;
+    width: 100%;
+}
+.label{
+    margin: 20px auto 10px 0px;
+}
+.title {
+    margin: 10px 0px 30px;
+    font-weight: 600;
+    color: black,
+}
+.pwd {
+    display: flex;
+    justify-content: space-between;
+}
+.footer{
+    text-align: center;
+    margin-top: 20px
+}
+#signupBtn{
+    background-color: #43afff;
+    background:#43afff;
+    box-shadow:none;
+    color: #fff;
+    width: 150px;
+    height: 50px;
+    font-size: 16px;
+    display: flex;
+    margin:20px 20px 20px 0;
+    font-size: 14px;
+}
+.btnIcon{
+    height: 22px;
+}

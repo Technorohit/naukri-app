@@ -1,0 +1,40 @@
+.cards{
+    display: flex;
+    width: 80%;
+    margin:100px auto;
+  overflow: scroll;
+}
+.job-card{
+width: 350px;
+height: 250px;
+max-height: 300px;
+margin: 0px 20px;
+background-color: #fff;
+border-radius: 5px;
+box-shadow: 0px 3px 6px #557DA526;
+display: flex;
+justify-content: space-around;
+flex-direction: column;
+}
+.job-title{
+    color: #43afff;
+    padding: 25px 25px 0px;
+    text-transform: capitalize;
+    font-size: 18px;
+    text-align: left;
+    font-weight: 600;
+}
+.job-desc{
+    width: 300px;
+
+    color: #303F60;
+    font-weight: 400;
+    font-size: 15px;
+    padding: 30px 20px;
+    text-align: left;
+}
+.job-location{
+    text-align: left;
+    padding: 10px 0px;
+    display:inline-block
+}

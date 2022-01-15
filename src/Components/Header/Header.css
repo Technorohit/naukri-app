@@ -1,0 +1,46 @@
+.header-container{
+/* top: 0px; */
+
+color: #FFF;
+width: 90%;
+margin: 0px auto;
+border-bottom: 1px solid #4D618E;
+display: flex;
+justify-content: space-between;
+padding: 10px;
+}
+.logo{
+    margin-top: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+}
+.logo-hightlight{
+color: #43afff;
+
+}
+.authBtn{
+background: #43AFFF33 0% 0% no-repeat padding-box;
+border: 1px solid #43AFFF;
+border-radius: 5px;
+padding: 13px 23px;
+/* margin-top: 10px; */
+text-align: center;
+font: normal normal bold 16px/19px Helvetica Neue;
+}
+.userprofile{
+    border-radius: 50%;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    padding: 12px;
+    border: 1px solid black;
+    background: #D9EFFF;
+    color: black;
+    font-size: 18px;
+}
+#Arrowicon{
+    display: inline-block;
+    font-size: 40px;
+    vertical-align: bottom;
+}

@@ -1,3 +1,4 @@
+import React,{PureComponent} from 'react';
 import Dashboard from './Components/Dashboard/Dashboard'
 import Header from './Components/Header/Header'
 import Auth from './Components/Auth/Auth'
@@ -42,28 +43,26 @@ const getRoutes = () => [
     exact: true,
   },
 ];
-
 function App() {
+  const [isUserAuthenticated,setUserAuthenticated] = React.useState(false);
   return (
     <div className="App">
       <div className='firsthalf'>
         <Router>
           <Switch>
             <>
-              <Header />
+              <Header isUserAuthenticated={isUserAuthenticated}/>
               {getRoutes().map(route => {
                 if (route.protected) {
                   return (
                     <ProtectedRoutes
                       key={route.key}
-
                       {...route}
                     />
                   );
                 }
                 else{
-                  console.log('route.key',route.key);
-                 return <Route exact={route.exact} key={route.key} {...route} />
+                 return <Route exact={route.exact} key={route.key} {...route}/>
                 }
                
               }

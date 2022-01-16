@@ -7,7 +7,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { Button } from '@mui/material';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Logout from '@mui/icons-material/Logout';
-import { getUser, UserExist, removeUserSession } from '../../Utility/util';
+import { getUser, removeUserSession } from '../../Utility/util';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 
@@ -61,26 +61,17 @@ const RenderUserMenu = (props) => {
   </Menu>
 }
 
-export default function Header() {
-  const [userSession, setUserSession] = React.useState(false);
+export default function Header(props) {
   let history = useHistory();
-  const [showModal, setShowModal] = React.useState(false);
+  const [userSession,setUserSession]=React.useState(false);
   const [showMenu, setShowMenu] = React.useState(false);
-  console.log('getUser', getUser());
+  const handleMenuClose = () => setShowMenu(!showMenu);
+  
   React.useEffect(() => {
     if (getUser()) {
       setUserSession(true)
     }
-  }, [UserExist])
-
-  const handleMenuClose = () => setShowMenu(!showMenu);
-  const showAuthModal = (props) => {
-    console.log(props)
-    history.push('/login');
-
-    setShowModal(!showModal)
-  }
-  console.log('userSession', userSession);
+  });
   return (
     <div className='header-container'>
       <div className='logo'>My<span className='logo-hightlight'>Jobs</span></div>
@@ -90,9 +81,8 @@ export default function Header() {
         } style={{ background: 'transparent', boxShadow: 'none',}}>Post a Job</Button>
         <div className='userprofile'>R</div>
         <ArrowDropDownIcon id='Arrowicon'onClick={() => handleMenuClose()} />
-      </div> : <div className='authBtn' style={{cursor:'pointer'}}onClick={showAuthModal}>Login/SignUp</div>}
+      </div> : <div className='authBtn' style={{cursor:'pointer'}}onClick={()=>history.push('/login')}>Login/SignUp</div>}
       {showMenu && <RenderUserMenu showMenu={showMenu} handleMenuClose={handleMenuClose} />}
-      {showModal&&<Auth/>}
     </div>
   )
 }

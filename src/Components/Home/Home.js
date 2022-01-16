@@ -28,6 +28,7 @@ const RenderNoJobsUi = () => {
 }
 
 export default function Home() {
+    
     const [jobs, setJobs] = React.useState([]);
     const [pageNumber, setPageNumber] = React.useState(1);
     React.useEffect(() => {

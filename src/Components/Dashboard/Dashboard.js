@@ -1,6 +1,17 @@
 import React from 'react'
 import girlPoster from '../../asset/girl.jpeg';
 import './Dashboard.css';
+import InstaLogo from '../../asset/insta.png'
+import TwitterLogo from '../../asset/twitter.png'
+import ReebokLogo from '../../asset/reebok.png'
+import Shopee from '../../asset/shopee1.png'
+import SubwayLogo from '../../asset/subway.png'
+import Tokopedia from '../../asset/tokopedia.png'
+import NetflixLogo from '../../asset/netflix.png'
+import Marvel from '../../asset/marvel.png'
+import Telegram from '../../asset/telegram.png'
+
+
 
 export default function Dashboard() {
   
@@ -35,12 +46,34 @@ export default function Dashboard() {
            </div>
             <div className='testimonial-cards'>
                 {testimonialData.map(cardData=>
-               <div className='card'>
-                <div className='card-title'>{cardData.title}</div>
-                <div className='card-desc'>{cardData.description}</div>
+               <div className='testimony-card'>
+                <div className='testimony-card-title'>{cardData.title}</div>
+                <div className='testimony-card-desc'>{cardData.description}</div>
              </div>
                 )}
             </div>
+           </div>
+
+           <div className='clientLogo'>
+               <div className='clientTitle'>
+               Companies Who Trust Us
+               </div>
+               <div className='companiiesLogo'>
+                   <img src={InstaLogo}/>
+                   <img src={SubwayLogo}/>
+                   <img src={ReebokLogo}/>
+                   <img src={NetflixLogo}/>
+                   <img src={Tokopedia}/>
+                  
+               </div>
+               <div className='companiiesLogo' style={{justifyContent:'space-around',marginTop:'120px'}}>
+                   <img src={Shopee}/>
+                   <img src={Telegram}/>
+                   <img src={Marvel}/>
+                   
+                   
+                  
+               </div>
            </div>
         </div>
     )

@@ -3,12 +3,11 @@ import { Breadcrumbs } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Button from '@mui/material/Button'
-import { useHistory } from "react-router-dom";
+import { useHistory ,Link} from "react-router-dom";
+import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import NoteAltIcon from '@mui/icons-material/NoteAlt';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowRight from '@mui/icons-material/ArrowRight';
 import { getUser } from '../../Utility/util';
-import { Link } from "react-router-dom";
 import './Home.css';
 import ApplicantModal from '../ApplicantModal/ApplicantModal';
 
@@ -109,18 +108,21 @@ export default function Home() {
                 ) : RenderNoJobsUi()}
 
             </div>
+            {openApplicantModal&&<ApplicantModal openApplicantModal={openApplicantModal} handleClose={handleClose} selectedJobId={selectedJobId}/>}
             <div className='pagination'>
-                <ArrowBackIosIcon
+            <button style={{width:'20px'}}>
+                <ArrowLeftIcon
                     onClick={() => {
                         if (pageNumber > 1) { setPageNumber(pageNumber - 1) }
                       }
                     }
-                    style={{ cursor: 'pointer', color: '#43afff', fontSize: '16px', display: 'inline-block' }} sx={{ mr: 0.5 }} fontSize="inherit" />
-                <span>1</span>
-                <ArrowForwardIosIcon onClick={() => setPageNumber(pageNumber + 1)} style={{ cursor: 'pointer', color: '#43afff', fontSize: '16px', display: 'inline-block' }} sx={{ ml: 1 }} fontSize="inherit" />
+                    style={{ cursor: 'pointer', color: '#43afff', fontSize: '21px', display: 'inline-block' }} sx={{ mr: 1 }} fontSize="inherit" /></button>
+                <span style={{fontSize:'21px',margin:'0px 10px'}}>1</span>
+                    <button style={{width:'20px'}}>
+                <ArrowRight onClick={() => setPageNumber(pageNumber + 1)} style={{ cursor: 'pointer', color: 'black', fontSize: '21px', display: 'inline-block' }} sx={{ ml: 0 }} fontSize="inherit" />
 
+                    </button>
             </div>
-            {openApplicantModal&&<ApplicantModal openApplicantModal={openApplicantModal} handleClose={handleClose} selectedJobId={selectedJobId}/>}
         </div>
     )
 }

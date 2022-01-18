@@ -57,16 +57,16 @@ export default function Home(props) {
         }
         ).catch(e => console.log(e))
     }, [])
-    // React.useEffect(() => {
+    React.useEffect(() => {
 
-    //     const url = `https://jobs-api.squareboat.info/api/v1/jobs?page=${pageNumber}`;
-    //     fetch(url, {
-    //         method: "GET",
-    //         headers: {
-    //             "Content-type": "application/json",
-    //         },
-    //     }).then(res => res.json()).then(data => setJobs(data.data))
-    // }, [pageNumber]);
+        const url = `https://jobs-api.squareboat.info/api/v1/jobs?page=${pageNumber}`;
+        fetch(url, {
+            method: "GET",
+            headers: {
+                "Content-type": "application/json",
+            },
+        }).then(res => res.json()).then(data => setJobs(data.data))
+    }, [pageNumber]);
 
 
     return (
@@ -101,18 +101,18 @@ export default function Home(props) {
             </div>
             {openApplicantModal&&<ApplicantModal openApplicantModal={openApplicantModal} handleClose={handleClose} selectedJobId={selectedJobId}/>}
             <div className='pagination'>
-            <button style={{width:'20px'}}>
+  
                 <ArrowLeftIcon
                     onClick={() => {
                         if (pageNumber > 1) { setPageNumber(pageNumber - 1) }
                       }
                     }
-                    style={{ cursor: 'pointer', color: '#43afff', fontSize: '21px', display: 'inline-block' }} sx={{ mr: 1 }} fontSize="inherit" /></button>
-                <span style={{fontSize:'21px',margin:'0px 10px'}}>1</span>
-                    <button style={{width:'20px'}}>
-                <ArrowRight onClick={() => setPageNumber(pageNumber + 1)} style={{ cursor: 'pointer', color: 'black', fontSize: '21px', display: 'inline-block' }} sx={{ ml: 0 }} fontSize="inherit" />
+                    id='pagination-left' fontSize="inherit" />
+                <div style={{fontSize:'21px',margin:'8px 0px',display:'inline-block'}}>1</div>
+             
+                <ArrowRight id="pagination-right" onClick={() => setPageNumber(pageNumber + 1)} sx={{ ml: 0 }} fontSize="inherit" />
 
-                    </button>
+                 
             </div>
         </div>
     )

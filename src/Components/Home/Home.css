@@ -42,7 +42,22 @@ flex-direction: column;
     display:inline-block
 }
 .pagination{
-    position: absolute;
+    /* position: absolute; */
     bottom: 50px;
     left: 50%;
+}
+#pagination-left{
+    cursor: pointer; 
+    color: black; 
+    font-size: 40px;
+    position:absolute;
+    left:45%
+}
+#pagination-right{
+    position:absolute;
+    right:45%;
+    cursor: pointer;
+    color: black;
+    font-size: 40px; 
+    display: inline-block; 
 }

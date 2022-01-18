@@ -5,9 +5,12 @@ import Typography from "@mui/material/Typography";
 import { TextField } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { setUserSession } from '../../Utility/util'
+import { connect ,useSelector} from 'react-redux';
 import HR from '../../asset/hr.png'
 import Emp from '../../asset/employee.png'
+import { compose ,bindActionCreators} from 'redux';
 
+import { doLogin } from '../../Modules/user/user.action'
 import './Auth.css'
 
 const primaryColor = "#43afff";
@@ -17,7 +20,6 @@ const whiteColor = "#fff";
 function RenderForgotPassword(props) {
 
     const submitPasswordRequest = () => {
-        console.log(props.userName)
         const url = `https://jobs-api.squareboat.info/api/v1/auth/resetpassword?email=${props.userName}`
         fetch(url, {
             method: "GET",
@@ -25,7 +27,6 @@ function RenderForgotPassword(props) {
                 "Content-type": "application/json",
             }
         }).then(response => response.json()).then(data => {
-            console.log(data)
             props.setResetToken(data.data.token)
             props.setPageNumber(3)
         }
@@ -320,7 +321,7 @@ const RenderRegisterUI = (props) => {
     </Box>
 }
 
-export default function Auth(props) {
+function Auth(props) {
     let history = useHistory();
     const style = {
         title: {
@@ -361,32 +362,14 @@ export default function Auth(props) {
             email: userName,
             password: password,
         };
-        const url = "https://jobs-api.squareboat.info/api/v1/auth/login";
-        fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json",
-            },
-            body: JSON.stringify(body),
+        props.doLogin(body).then(response=>{
+           if(response.success){
+               history.push('/home')
+           }
         })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.success) {
-                    console.log(data)
-                    setUserSession(data.data)
-                    console.log('modelOpen', modelOpen)
-                    setModelOpen(false)
-                    history.push('/home')
-                }
-                else {
-                    alert(`Something Went Wrong : ${data.message}`)
-                    console.log('error',data);
-                }
-            });
     };
 
     const signUpHandler = () => {
-        console.log(userName, password);
         const body = {
             email: userName,
             userRole: role,
@@ -428,7 +411,6 @@ export default function Auth(props) {
             return RenderLoginUi({ userName, setUserName, style, password, setPassword, setPageNumber, loginHandler });
         }
     }
-
     return (
         <div>
             {RenderComponent()}
@@ -436,3 +418,11 @@ export default function Auth(props) {
 
     );
 }
+
+function mapDispatchToProps(dispatch){
+    return { doLogin: (...data) => dispatch(doLogin(...data))  }
+}
+const mapStateToProps=(state)=>({
+        user:state.user
+})
+export default connect(mapStateToProps,mapDispatchToProps)(Auth)

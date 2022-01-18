@@ -17,9 +17,6 @@ export default function JobPostModal() {
     const publishJob = (e) => {
         const url = `https://jobs-api.squareboat.info/api/v1/jobs/`;
         const userDetails = getUser();
-        console.log('title',title);
-        console.log('description',description);
-        console.log('location',location);
         const body = JSON.stringify({
             title:title,
             description:description,
@@ -36,7 +33,6 @@ export default function JobPostModal() {
         }).then(res=>res.json()).then(data=>
            history.push("/home") 
            ).catch(er=>console.log('er',er))
-        console.log('thanks', title,description,location)
     }
     return (<Modal
         open={true}

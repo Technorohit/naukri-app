@@ -1,8 +1,11 @@
-import React,{PureComponent} from 'react';
+import React,{useEffect} from 'react';
 import Dashboard from './Components/Dashboard/Dashboard'
 import Header from './Components/Header/Header'
 import Auth from './Components/Auth/Auth'
+import { getUser } from './Utility/util'
+import { useDispatch } from 'react-redux'
 import Home from './Components/Home/Home'
+import {USER_LOGIN} from './Modules/user/user.action';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ProtectedRoutes from './Components/ProtectedRoutes/ProtectedRoutes'
 import JobPostModal from './Components/JobPostModal/JobPostModal';
@@ -44,14 +47,25 @@ const getRoutes = () => [
   },
 ];
 function App() {
-  const [isUserAuthenticated,setUserAuthenticated] = React.useState(false);
+  const dispatch = useDispatch();
+useEffect(()=>{
+  if(!!getUser()){// if true
+    dispatch({
+      type:USER_LOGIN.SUCCESS,
+      isUserAuthenticated:true,
+      response:{data:getUser()} 
+    })
+  }
+  // do initialSetup for App here
+},[])
+
   return (
     <div className="App">
       <div className='firsthalf'>
         <Router>
           <Switch>
             <>
-              <Header isUserAuthenticated={isUserAuthenticated}/>
+              <Header />
               {getRoutes().map(route => {
                 if (route.protected) {
                   return (

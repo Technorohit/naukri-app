@@ -1,13 +1,13 @@
 import React from 'react'
 import './Header.css';
 import { useHistory } from "react-router-dom";
-import Auth from '../Auth/Auth'
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Button } from '@mui/material';
 import ListItemIcon from '@mui/material/ListItemIcon';
+import { connect } from 'react-redux';
 import Logout from '@mui/icons-material/Logout';
-import { getUser, removeUserSession } from '../../Utility/util';
+import {doLogOut} from '../../Modules/user/user.action';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 
@@ -52,7 +52,7 @@ const RenderUserMenu = (props) => {
     anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
   >
 
-    <MenuItem onClick={() => { removeUserSession(); history.push('/') }}>
+    <MenuItem onClick={() => { props.doLogOut(); history.push('/') }}>
       <ListItemIcon>
         <Logout fontSize="small" />
       </ListItemIcon>
@@ -61,28 +61,29 @@ const RenderUserMenu = (props) => {
   </Menu>
 }
 
-export default function Header(props) {
+function Header(props) {
   let history = useHistory();
-  const [userSession,setUserSession]=React.useState(false);
   const [showMenu, setShowMenu] = React.useState(false);
   const handleMenuClose = () => setShowMenu(!showMenu);
-  
-  React.useEffect(() => {
-    if (getUser()) {
-      setUserSession(true)
-    }
-  });
+
   return (
     <div className='header-container'>
       <div className='logo'>My<span className='logo-hightlight'>Jobs</span></div>
-      {userSession ? <div>
+      {props.user.isUserAuthenticated ? <div>
         <Button variant="contained" onClick={() =>
           history.push('/post-job')
         } style={{ background: 'transparent', boxShadow: 'none',}}>Post a Job</Button>
         <div className='userprofile'>R</div>
         <ArrowDropDownIcon id='Arrowicon'onClick={() => handleMenuClose()} />
       </div> : <div className='authBtn' style={{cursor:'pointer'}}onClick={()=>history.push('/login')}>Login/SignUp</div>}
-      {showMenu && <RenderUserMenu showMenu={showMenu} handleMenuClose={handleMenuClose} />}
+      {showMenu && <RenderUserMenu showMenu={showMenu} doLogOut={props.doLogOut} handleMenuClose={handleMenuClose} />}
     </div>
   )
 }
+function mapDispatchToProps(dispatch){
+  return { doLogOut: () => dispatch(doLogOut())  }
+}
+const mapStateToProps=(state)=>({
+      user:state.user
+})
+export default connect(mapStateToProps,mapDispatchToProps)(Header)

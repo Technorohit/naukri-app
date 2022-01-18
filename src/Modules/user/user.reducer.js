@@ -1,5 +1,7 @@
 import {USER_LOGIN} from './user.action'
-const initialState = {}
+const initialState = {
+    isUserAuthenticated:false
+}
 export default (state = initialState,action) => {
     switch (action.type) {
         case USER_LOGIN.REQUEST:
@@ -13,18 +15,19 @@ export default (state = initialState,action) => {
         case USER_LOGIN.SUCCESS:
             return {
                 ...state,
+                isUserAuthenticated:true,
                 user: {
                     message: 'success',
-                    ...action.data
+                    ...action.response.data
                 }
             }
         case USER_LOGIN.FAILED:
+        case USER_LOGIN.LOGOUT:
             return {
                 ...state,
-                user: {
-                    message: 'failed',
-                    ...action.data
-                }
+                isUserAuthenticated:false,
             }
+        default:
+            return state
     }
 }

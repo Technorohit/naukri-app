@@ -28,8 +28,7 @@ const RenderNoJobsUi = () => {
 }
 
 
-export default function Home() {
-    
+export default function Home(props) {
     const [jobs, setJobs] = React.useState([]);
     const [selectedJobId,setSelectedJobId] = React.useState(null);
     const [pageNumber, setPageNumber] = React.useState(1);
@@ -38,17 +37,10 @@ export default function Home() {
         setSelectedJobId(jobId)
         setOpenApplicantModal(true);
     }
-    
-
     const handleClose = () => setOpenApplicantModal(false);
-
-
-
-
     React.useEffect(() => {
         // const url = 'https://jobs-api.squareboat.info/api/v1/jobs';
         const userDetails = getUser();
-        console.log('userD', userDetails)
         const url = 'https://jobs-api.squareboat.info/api/v1/recruiters/jobs'
         fetch(url, {
             method: "GET",
@@ -60,7 +52,6 @@ export default function Home() {
             if (data.message === "No jobs posted") {
                 setJobs([])
             } else {
-                console.log('data get', data)
                 setJobs(data.data.data)
             }
         }

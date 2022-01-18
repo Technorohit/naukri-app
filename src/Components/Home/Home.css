@@ -61,3 +61,73 @@ flex-direction: column;
     font-size: 40px; 
     display: inline-block; 
 }
+.view-application{
+ color: white;
+  background: #43afff;
+   box-shadow: none;
+   display: block;
+   border: none;
+   border-radius: 5px;
+}
+#breadcrumbs-nav{
+    margin-left: 200px;
+     margin-top: 10px
+}
+
+@media screen and (max-width: 768px) {
+    .cards{
+        width: 85%;
+       overflow: scroll;
+       grid-template-columns: auto auto;
+    }
+
+    .job-card{
+        height: 170px;
+        margin: 10px;
+        }
+        .job-title{
+            padding: 25px 25px 0px;
+            font-size: 15px;
+        }
+        .job-desc{
+            width: 260px;
+            font-size: 12px;
+            padding: 10px 20px;
+        }
+        .job-location{
+            padding: 10px 0px;
+        }
+        #breadcrumbs-nav{
+            margin-left: 80px;
+        }
+    #pagination-left{left:42%}
+    #pagination-right{right:42%}
+}
+@media screen and (max-width: 480px) {
+    .cards{   
+        width: 85%;
+       overflow: scroll;
+       grid-template-columns: auto;
+    }
+    .job-card{
+        height: 170px;
+        margin: 10px;
+        }
+        .job-title{
+            padding: 25px 25px 0px;
+            font-size: 15px;
+        }
+        .job-desc{
+            width: 260px;
+            font-size: 12px;
+            padding: 10px 20px;
+        }
+        .job-location{
+            padding: 10px 0px;
+        }
+        #breadcrumbs-nav{
+            margin-left: 80px;
+        }
+        #pagination-left{left:42%}
+        #pagination-right{right:42%}
+}

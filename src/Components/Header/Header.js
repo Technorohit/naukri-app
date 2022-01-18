@@ -63,17 +63,19 @@ const RenderUserMenu = (props) => {
 
 function Header(props) {
   let history = useHistory();
+  const {user} = props;
   const [showMenu, setShowMenu] = React.useState(false);
   const handleMenuClose = () => setShowMenu(!showMenu);
-
+  const userNameInitial = user?.user?.name[0];
+  console.log(user?.user?.name);
   return (
     <div className='header-container'>
-      <div className='logo'>My<span className='logo-hightlight'>Jobs</span></div>
+      <div className='logo' onClick={()=>history.push('/')}>My<span className='logo-hightlight'>Jobs</span></div>
       {props.user.isUserAuthenticated ? <div>
         <Button variant="contained" onClick={() =>
           history.push('/post-job')
         } style={{ background: 'transparent', boxShadow: 'none',}}>Post a Job</Button>
-        <div className='userprofile'>R</div>
+        <div className='userprofile'>{userNameInitial.toUpperCase()}</div>
         <ArrowDropDownIcon id='Arrowicon'onClick={() => handleMenuClose()} />
       </div> : <div className='authBtn' style={{cursor:'pointer'}}onClick={()=>history.push('/login')}>Login/SignUp</div>}
       {showMenu && <RenderUserMenu showMenu={showMenu} doLogOut={props.doLogOut} handleMenuClose={handleMenuClose} />}

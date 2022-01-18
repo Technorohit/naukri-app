@@ -3,7 +3,7 @@ import { Breadcrumbs } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Button from '@mui/material/Button'
-import { useHistory ,Link} from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import NoteAltIcon from '@mui/icons-material/NoteAlt';
 import ArrowRight from '@mui/icons-material/ArrowRight';
@@ -30,10 +30,10 @@ const RenderNoJobsUi = () => {
 
 export default function Home(props) {
     const [jobs, setJobs] = React.useState([]);
-    const [selectedJobId,setSelectedJobId] = React.useState(null);
+    const [selectedJobId, setSelectedJobId] = React.useState(null);
     const [pageNumber, setPageNumber] = React.useState(1);
     const [openApplicantModal, setOpenApplicantModal] = React.useState(false);
-    const handleOpen = (jobId) =>{
+    const handleOpen = (jobId) => {
         setSelectedJobId(jobId)
         setOpenApplicantModal(true);
     }
@@ -71,7 +71,7 @@ export default function Home(props) {
 
     return (
         <div>
-            <Breadcrumbs style={{ marginLeft: '200px', marginTop: '10px' }} aria-label="breadcrumb">
+            <Breadcrumbs id='breadcrumbs-nav' aria-label="breadcrumb">
                 <Link
                     underline="hover"
                     sx={{ display: 'flex', alignItems: 'center' }}
@@ -79,7 +79,7 @@ export default function Home(props) {
                     href="/"
                     to="/"
                 >
-                    <HomeIcon style={{ color: 'white' }} sx={{ mr: 1 }} fontSize="inherit" />
+                    <HomeIcon style={{ color: 'white', marginRight: '5px' }} fontSize="inherit" />
                     <span style={{ color: 'white' }}>Home</span>
                 </Link>
             </Breadcrumbs>
@@ -93,26 +93,23 @@ export default function Home(props) {
                                 <LocationOnIcon style={{ color: '#43afff', fontSize: '16px', display: 'inline-block' }} sx={{ mr: 0.5 }} fontSize="inherit" />
                                 <div className='job-location'>{job.location}</div>
                             </div>
-                            <Button onClick={()=>handleOpen(job.id)} style={{ color: 'white', background: '#43afff', boxShadow: 'none', display: 'block' }}>View Application</Button>
+                            <Button onClick={() => handleOpen(job.id)} class="view-application">View Application</Button>
                         </div>
                     </div>
                 ) : RenderNoJobsUi()}
-
             </div>
-            {openApplicantModal&&<ApplicantModal openApplicantModal={openApplicantModal} handleClose={handleClose} selectedJobId={selectedJobId}/>}
+            {openApplicantModal && <ApplicantModal openApplicantModal={openApplicantModal} handleClose={handleClose} selectedJobId={selectedJobId} />}
             <div className='pagination'>
-  
                 <ArrowLeftIcon
                     onClick={() => {
-                        if (pageNumber > 1) { setPageNumber(pageNumber - 1) }
-                      }
+                        if (pageNumber > 1) { setPageNumber(pageNumber - 1) } }
                     }
                     id='pagination-left' fontSize="inherit" />
-                <div style={{fontSize:'21px',margin:'8px 0px',display:'inline-block'}}>1</div>
-             
+                <div style={{ fontSize: '21px', margin: '8px 0px', display: 'inline-block' }}>1</div>
+
                 <ArrowRight id="pagination-right" onClick={() => setPageNumber(pageNumber + 1)} sx={{ ml: 0 }} fontSize="inherit" />
 
-                 
+
             </div>
         </div>
     )

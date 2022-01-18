@@ -9,7 +9,6 @@
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     vertical-align: middle;
-
     justify-content: space-between;
     padding: 50px 100px;
 }
@@ -92,6 +91,52 @@ text-align: left;
     margin-top: 60px;
 }
 .companiiesLogo img{
-   
     height: 80px;
+}
+@media screen and (max-width: 480px) {
+    .mainContent{
+        font-size: 20px;
+        padding: 20px;
+    }
+    .mainContent .poster{
+        height: 180px;
+    }
+    .clientLogo{
+        font-size: 14px;
+        margin: 10px auto;
+    }
+    .companiiesLogo img{
+        height: 20px;
+    }
+    .companiiesLogo{
+        display: flex;
+        margin: 0px auto;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+    .getStartedCta{
+        font-size: 10px;
+        width: 100px;
+        height: 40px;
+    }
+    .welcome-text{
+        width: 250px;
+    }
+    .testimonial-title{
+        font-size: 14px;
+    }
+    .testimonial-cards{
+        flex-direction: column;
+    }
+    .testimony-card{
+        height: auto;
+        width: 300px;
+        margin:10px;
+        padding:10px
+    }
+    .testimony-card-title,.testimony-card-desc{
+        font-size: 12px;
+        padding: 15px 15px 0px;
+    }
+    
 }

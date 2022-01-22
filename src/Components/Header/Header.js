@@ -66,7 +66,7 @@ function Header(props) {
   const {user} = props;
   const [showMenu, setShowMenu] = React.useState(false);
   const handleMenuClose = () => setShowMenu(!showMenu);
-  const userNameInitial = props.user&&props.user.user?.name[0];
+  const userNameInitial = user.user?user.user.name[0]:'R';
   console.log(user?.user?.name);
   return (
     <div className='header-container'>

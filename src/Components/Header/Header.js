@@ -65,9 +65,13 @@ function Header(props) {
   let history = useHistory();
   const {user} = props;
   const [showMenu, setShowMenu] = React.useState(false);
+  const [userNameInitial,setuserNameInitial] = React.useState('');
   const handleMenuClose = () => setShowMenu(!showMenu);
-  const userNameInitial = user.user?user.user.name[0]:'R';
-  console.log(user?.user?.name);
+  React.useEffect(()=>{
+    if(user.user)
+    {setuserNameInitial(user.user.name[0])}
+  },[user.isUserAuthenticated])
+
   return (
     <div className='header-container'>
       <div className='logo' onClick={()=>history.push('/')}>My<span className='logo-hightlight'>Jobs</span></div>
